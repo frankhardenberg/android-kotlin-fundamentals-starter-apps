@@ -18,6 +18,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="gameViewModel"
+            type="com.example.android.guesstheword.screens.game.GameViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/game_layout"
         android:layout_width="match_parent"
@@ -43,6 +49,7 @@
 
         <TextView
             android:id="@+id/word_text"
+            android:text="@{@string/quote_format(gameViewModel.word)}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
@@ -77,6 +84,7 @@
 
         <TextView
             android:id="@+id/score_text"
+            android:text="@{@string/score_format(gameViewModel.score)}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -92,6 +100,7 @@
 
         <Button
             android:id="@+id/skip_button"
+            android:onClick="@{() -> gameViewModel.onSkip()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -102,6 +111,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline" />
 
+        <TextView
+            android:id="@+id/hint_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{gameViewModel.wordHint}"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/timer_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"/>
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
@@ -111,6 +131,7 @@
 
         <Button
             android:id="@+id/correct_button"
+            android:onClick="@{() -> gameViewModel.onCorrect()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -124,6 +145,7 @@
 
         <Button
             android:id="@+id/end_game_button"
+            android:onClick="@{() -> gameViewModel.onGameFinish()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
