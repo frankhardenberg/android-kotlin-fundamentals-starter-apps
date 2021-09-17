@@ -94,11 +94,11 @@ class DevByteFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val binding: FragmentDevByteBinding = DataBindingUtil.inflate(
                 inflater,
-                R.layout.fragment_dev_byte,
+                com.example.android.devbyteviewer.R.layout.fragment_dev_byte,
                 container,
                 false)
         // Set the lifecycleOwner so DataBinding can observe LiveData
-        binding.setLifecycleOwner(viewLifecycleOwner)
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.viewModel = viewModel
 
